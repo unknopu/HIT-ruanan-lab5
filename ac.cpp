@@ -205,6 +205,7 @@ void buildTable()
     {
         return;
     }
+
     int j = 1;
     for (; j < 256; j++)
     {
