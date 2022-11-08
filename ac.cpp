@@ -184,7 +184,7 @@ int main()
         result[pos++].pos = cur_pos + 1;
     }
 
-	cout << "\n\nmatched:\n";
+    printf("\n\nmatch:\n");
     for (int j = 0; j < pos; j++)
     {
         for (int i = 0; i <= atState; i++)
