@@ -39,13 +39,13 @@ int char_appear[MAX];
 int base_table[MAX];
 int checker[MAX];
 int fail_table[MAX];
-int atState = 0;
-int parent_state = 0;
+int atState = DEFAULT;
+int parent_state = DEFAULT;
 
 int insert_table[MAX];
-int atIndex = 0;
-int atNodeNo = 0;
-int next_node_num = 0;
+int atIndex = DEFAULT;
+int atNodeNo = DEFAULT;
+int next_node_num = DEFAULT;
 int input_num;
 char input[MAX][MAX];
 int pos = 0;
@@ -59,7 +59,7 @@ int goToFunc(int state, int c);
 int main()
 {
     freopen("test.txt", "r", stdin);
-    memset(input, 0, sizeof(input));
+    memset(input, DEFAULT, sizeof(input));
     scanf("%d", &input_num);
 
     int row_len;
@@ -89,11 +89,11 @@ int main()
         }
     }
 
-    memset(char_appear, 0, sizeof(char_appear));
+    memset(char_appear, DEFAULT, sizeof(char_appear));
 
     for (int i = 0; i < input_num; i++)
     {
-        char_appear[model_set[i][0].cur_char] = 1;
+        char_appear[model_set[i][DEFAULT].cur_char] = 1;
     }
 
     for (int j = 0; j < MAX; j++)
@@ -111,7 +111,7 @@ int main()
     int k = 1;
     while (!q.empty())
     {
-        memset(char_appear, 0, sizeof(char_appear));
+        memset(char_appear, DEFAULT, sizeof(char_appear));
         int qhead = q.front();
         q.pop();
         atNodeNo--;
@@ -142,7 +142,7 @@ int main()
         if (!atNodeNo)
         {
             atNodeNo = next_node_num;
-            next_node_num = 0;
+            next_node_num = DEFAULT;
             k++;
         }
     }
@@ -175,7 +175,7 @@ int main()
     buildOutput();
     char tester[MAX];
     scanf("%s", tester);
-    int now_state = goToFunc(0, tester[0]);
+    int now_state = goToFunc(DEFAULT, tester[DEFAULT]);
     printf("%d ", now_state);
     result[pos].state = now_state;
     result[pos++].pos = 1;
@@ -219,7 +219,7 @@ void buildTable()
         j++;
     }
 
-    base_table[parent_state] = j - (insert_table[0]);
+    base_table[parent_state] = j - (insert_table[DEFAULT]);
     while (true)
     {
         int p = 0;
@@ -245,8 +245,8 @@ void buildTable()
         checker[atState] = parent_state;
     }
 
-    memset(insert_table, 0, sizeof(0));
-    atIndex = 0;
+    memset(insert_table, DEFAULT, sizeof(DEFAULT));
+    atIndex = DEFAULT;
     parent_state++;
 }
 
@@ -275,7 +275,7 @@ int goToFunc(int state, int c)
     {
         return t;
     }
-    else if (state == 0)
+    else if (state == DEFAULT)
     {
         return 0;
     }
@@ -293,10 +293,10 @@ void buildOutput()
     char tt[MAX];
     for (int i = 1; i <= atState; i++)
     {
-        memset(tt, 0, sizeof(tt));
+        memset(tt, DEFAULT, sizeof(tt));
         output[i].state = i;
         int temp = i;
-        int num = 0;
+        int num = DEFAULT;
         while (temp)
         {
             for (int j = 0; j < MAX; j++)
@@ -310,7 +310,7 @@ void buildOutput()
             temp = checker[temp];
         }
 
-        int k = 0;
+        int k = DEFAULT;
         for (int p = num - 1; p >= 0; p--)
         {
             output[i].str[k++] = tt[p];
