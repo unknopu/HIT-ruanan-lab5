@@ -33,22 +33,21 @@ struct result_node
     int pos;
     int state;
 } result[MAX];
-queue<int> q;
 
+queue<int> q;
 int char_appear[MAX];
 int basor[MAX];
 int checker[MAX];
 int failor[MAX];
 int atState = DEFAULT;
 int parent_state = DEFAULT;
-
 int insert_table[MAX];
 int atIndex = DEFAULT;
 int atNodeNo = DEFAULT;
 int next_node_num = DEFAULT;
 int input_num;
 char input[MAX][MAX];
-int pos = 0;
+int pos = DEFAULT;
 int cur_pos;
 
 void buildTable();
@@ -58,7 +57,9 @@ int goToFunc(int state, int c);
 
 int main()
 {
-    freopen("test.txt", "r", stdin);
+    // freopen("test.txt", "r", stdin);
+	FILE* file = freopen("test.txt", "r", stdin);
+
     memset(input, DEFAULT, sizeof(input));
     scanf("%d", &input_num);
 
@@ -90,7 +91,6 @@ int main()
     }
 
     memset(char_appear, DEFAULT, sizeof(char_appear));
-
     for (int i = 0; i < input_num; i++)
     {
         char_appear[model_set[i][DEFAULT].cur_char] = 1;
