@@ -19,7 +19,7 @@ struct next_node
 {
     int state;
     int character;
-} next_table[MAX];
+} nextor[MAX];
 
 struct output_node
 {
@@ -36,9 +36,9 @@ struct result_node
 queue<int> q;
 
 int char_appear[MAX];
-int base_table[MAX];
+int basor[MAX];
 int checker[MAX];
-int fail_table[MAX];
+int failor[MAX];
 int atState = DEFAULT;
 int parent_state = DEFAULT;
 
@@ -150,13 +150,13 @@ int main()
     cout << "next:\t";
 	for (int i = 0; i <= 12; i++)
 	{
-		cout << next_table[i].state << " ";
+		cout << nextor[i].state << " ";
 	}
 	cout << endl;
 	cout << "base:\t";
 	for (int i = 0; i <= atState; i++)
 	{
-		cout << base_table[i] << " ";
+		cout << basor[i] << " ";
 	}
 	cout << endl;
 	cout << "check:\t";
@@ -169,7 +169,7 @@ int main()
     printf("\nfail:\t");
     for (int i = 0; i <= atState; i++)
     {
-        printf("%d ", fail_table[i]);
+		cout << failor[i] << " ";
     }
 
     buildOutput();
@@ -185,7 +185,7 @@ int main()
         result[pos++].pos = cur_pos + 1;
     }
 
-    cout << "\nmatched patterns are:" << endl;
+    cout << "\n\nmatched patterns are:" << endl;
     for (int j = 0; j < pos; j++)
     {
         for (int i = 0; i <= atState; i++)
@@ -211,20 +211,20 @@ void buildTable()
     int j = 1;
     while (true)
     {
-        if (!next_table[j].state)
+        if (!nextor[j].state)
         {
             break;
         }
         j++;
     }
 
-    base_table[parent_state] = j - (insert_table[DEFAULT]);
+    basor[parent_state] = j - (insert_table[DEFAULT]);
     while (true)
     {
         int p = 0;
         for (; p < atIndex; p++)
         {
-            if ((next_table[base_table[parent_state] + insert_table[p]].state) != 0)
+            if ((nextor[basor[parent_state] + insert_table[p]].state) != 0)
                 break;
         }
         if (p == atIndex)
@@ -233,14 +233,14 @@ void buildTable()
         }
         else
         {
-            base_table[parent_state]++;
+            basor[parent_state]++;
         }
     }
 
     for (int i = 0; i < atIndex; i++)
     {
-        next_table[base_table[parent_state] + insert_table[i]].state = ++atState;
-        next_table[base_table[parent_state] + insert_table[i]].character = insert_table[i];
+        nextor[basor[parent_state] + insert_table[i]].state = ++atState;
+        nextor[basor[parent_state] + insert_table[i]].character = insert_table[i];
         checker[atState] = parent_state;
     }
 
@@ -257,9 +257,9 @@ void buildFailor()
         {
             for (int j = 0; j < MAX; j++)
             {
-                if (next_table[j].state == i)
+                if (nextor[j].state == i)
                 {
-                    fail_table[i] = goToFunc(fail_table[checker[i]], next_table[j].character);
+                    failor[i] = goToFunc(failor[checker[i]], nextor[j].character);
                     break;
                 }
             }
@@ -269,7 +269,7 @@ void buildFailor()
 
 int goToFunc(int state, int c)
 {
-    int t = next_table[base_table[state] + c].state;
+    int t = nextor[basor[state] + c].state;
     if (checker[t] == state)
     {
         return t;
@@ -280,10 +280,10 @@ int goToFunc(int state, int c)
     }
     else
     {
-        printf("%d ", fail_table[state]);
-        result[pos].state = fail_table[state];
+        printf("%d ", failor[state]);
+        result[pos].state = failor[state];
         result[pos++].pos = cur_pos;
-        return goToFunc(fail_table[state], c);
+        return goToFunc(failor[state], c);
     }
 }
 
@@ -300,9 +300,9 @@ void buildOutput()
         {
             for (int j = 0; j < MAX; j++)
             {
-                if (temp == next_table[j].state)
+                if (temp == nextor[j].state)
                 {
-                    tt[num++] = next_table[j].character;
+                    tt[num++] = nextor[j].character;
                     break;
                 }
             }
