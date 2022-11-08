@@ -172,7 +172,6 @@ int main()
 	for (current_pos = 1; current_pos < (int)strlen(text); current_pos++)
 	{
 		nowState = goto_func(nowState, text[current_pos]);
-		//printf("%d ", nowState);
 		result[jj].state = nowState;
 		result[jj++].pos = current_pos + 1;
 	}

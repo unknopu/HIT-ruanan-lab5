@@ -40,15 +40,15 @@ int atState = 0;
 int parent_state = 0;
 
 int insert_table[256];
-int cur_index = 0;
-int cur_node_num = 0;
+int atIndex = 0;
+int atNodeNo = 0;
 int next_node_num = 0;
 int input_num;
 char input[256][256];
 int pos = 0;
 int cur_pos;
 
-void BuildTable();
+void buildTable();
 void BuildFailTable();
 void BuildOutputTable();
 int goToFunc(int state, int c);
@@ -98,12 +98,12 @@ int main()
         if (char_appear[j])
         {
             q.push(j);
-            insert_table[cur_index++] = j;
+            insert_table[atIndex++] = j;
         }
     }
 
-    cur_node_num = cur_index;
-    BuildTable();
+    atNodeNo = atIndex;
+    buildTable();
 
     int k = 1;
     while (!q.empty())
@@ -111,11 +111,10 @@ int main()
         memset(char_appear, 0, sizeof(char_appear));
         int qhead = q.front();
         q.pop();
-        cur_node_num--;
-
+        atNodeNo--;
         for (int i = 0; i < input_num; i++)
         {
-            if (model_set[i][k].cur_char == 0)
+            if !(model_set[i][k].cur_char)
             {
                 continue;
             }
@@ -131,15 +130,15 @@ int main()
             if (char_appear[j])
             {
                 q.push(j);
-                insert_table[cur_index++] = j;
+                insert_table[atIndex++] = j;
                 next_node_num++;
             }
         }
 
-        BuildTable();
-        if (!cur_node_num)
+        buildTable();
+        if (!atNodeNo)
         {
-            cur_node_num = next_node_num;
+            atNodeNo = next_node_num;
             k++;
             next_node_num = 0;
         }
@@ -203,9 +202,9 @@ int main()
     return 0;
 }
 
-void BuildTable()
+void buildTable()
 {
-    if (!cur_index)
+    if (!atIndex)
     {
         return;
     }
@@ -224,12 +223,12 @@ void BuildTable()
     while (flag)
     {
         int p = 0;
-        for (; p < cur_index; p++)
+        for (; p < atIndex; p++)
         {
             if ((next_table[base_table[parent_state] + insert_table[p]].state) != 0)
                 break;
         }
-        if (p == cur_index)
+        if (p == atIndex)
         {
             flag = 0;
         }
@@ -239,7 +238,7 @@ void BuildTable()
         }
     }
 
-    for (int i = 0; i < cur_index; i++)
+    for (int i = 0; i < atIndex; i++)
     {
         next_table[base_table[parent_state] + insert_table[i]].state = ++atState;
         next_table[base_table[parent_state] + insert_table[i]].character = insert_table[i];
@@ -247,7 +246,7 @@ void BuildTable()
     }
 
     memset(insert_table, 0, sizeof(0));
-    cur_index = 0;
+    atIndex = 0;
     parent_state++;
 }
 
