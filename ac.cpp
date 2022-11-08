@@ -5,8 +5,8 @@
 #include <queue>
 #include <stack>
 
-#define MAX = MAX;
-#define DEFAULT = 0;
+#define MAX 256
+#define DEFAULT 0
 
 using namespace std;
 struct node
