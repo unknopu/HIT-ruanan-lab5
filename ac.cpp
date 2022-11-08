@@ -182,10 +182,10 @@ int main()
     {
         now_state = goToFunc(now_state, tester[cur_pos]);
         result[pos].state = now_state;
-        result[pos++].pos = cur_pos + 1;
+        result[pos++].pos = ++cur_pos;
     }
 
-    cout << "\nAll detected patterns are as follows:" << endl;
+    cout << "\nmatched patterns are:" << endl;
     for (int j = 0; j < pos; j++)
     {
         for (int i = 0; i <= atState; i++)
