@@ -194,7 +194,7 @@ int main()
             }
         }
     }
-	getchar();
+
     fclose(stdin);
     return 0;
 }
