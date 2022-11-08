@@ -182,7 +182,7 @@ int main()
     {
         now_state = goToFunc(now_state, tester[cur_pos]);
         result[pos].state = now_state;
-        result[pos++].pos = ++cur_pos;
+        result[pos++].pos = cur_pos + 1;
     }
 
     cout << "\nmatched patterns are:" << endl;
