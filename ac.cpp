@@ -139,9 +139,15 @@ int main()
         if (!atNodeNo)
         {
             atNodeNo = next_node_num;
-            k++;
             next_node_num = 0;
+            k++;
         }
+    }
+
+    printf("\n\nnext:\n");
+    for (int i = 0; i <= 12; i++)
+    {
+        printf("%d ", next_table[i].state);
     }
 
     printf("check:\n");
@@ -150,11 +156,7 @@ int main()
         printf("%d ", checker[i]);
     }
 
-    printf("\n\nnext:\n");
-    for (int i = 0; i <= 12; i++)
-    {
-        printf("%d ", next_table[i].state);
-    }
+    
 
     printf("\n\nbase:\n");
     for (int i = 0; i <= atState; i++)
