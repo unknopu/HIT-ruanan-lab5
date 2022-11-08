@@ -205,15 +205,22 @@ void buildTable()
     {
         return;
     }
-
     int j = 1;
-    for (; j < 256; j++)
+    while (true)
     {
         if (!next_table[j].state)
         {
             break;
         }
+        j++;
     }
+    // for (; j < 256; j++)
+    // {
+    //     if (!next_table[j].state)
+    //     {
+    //         break;
+    //     }
+    // }
 
     base_table[parent_state] = j - (insert_table[0]);
     bool flag = 1;
