@@ -214,17 +214,10 @@ void buildTable()
         }
         j++;
     }
-    // for (; j < 256; j++)
-    // {
-    //     if (!next_table[j].state)
-    //     {
-    //         break;
-    //     }
-    // }
-
     base_table[parent_state] = j - (insert_table[0]);
-    bool flag = 1;
-    while (flag)
+    // bool flag = 1;
+    while (true)
+    // while (flag)
     {
         int p = 0;
         for (; p < atIndex; p++)
@@ -234,7 +227,8 @@ void buildTable()
         }
         if (p == atIndex)
         {
-            flag = 0;
+            break;
+            // flag = 0;
         }
         else
         {
