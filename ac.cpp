@@ -220,12 +220,10 @@ void buildTable()
     while (true)
     {
         int p = 0;
-        while (true) {
+        for (; p < atIndex; p++)
+        {
             if ((next_table[base_table[parent_state] + insert_table[p]].state) != 0)
-            {
                 break;
-            }   
-            p++;
         }
         if (p == atIndex)
         {
@@ -253,11 +251,7 @@ void buildFailor()
 {
     for (int i = 0; i <= atState; i++)
     {
-        if (!checker[i])
-        {
-            continue;
-        }
-        else
+        if (checker[i])
         {
             for (int j = 0; j < 256; j++)
             {
@@ -268,6 +262,22 @@ void buildFailor()
                 }
             }
         }
+
+        // if (!checker[i])
+        // {
+        //     continue;
+        // }
+        // else
+        // {
+        //     for (int j = 0; j < 256; j++)
+        //     {
+        //         if (next_table[j].state == i)
+        //         {
+        //             fail_table[i] = goToFunc(fail_table[checker[i]], next_table[j].character);
+        //             break;
+        //         }
+        //     }
+        // }
     }
 }
 
