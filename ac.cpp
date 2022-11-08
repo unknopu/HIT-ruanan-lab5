@@ -114,7 +114,7 @@ int main()
         atNodeNo--;
         for (int i = 0; i < input_num; i++)
         {
-            if !(model_set[i][k].cur_char)
+            if (!model_set[i][k].cur_char)
             {
                 continue;
             }
