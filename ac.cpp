@@ -55,7 +55,7 @@ int goToFunc(int state, int c);
 
 int main()
 {
-    freopen("input.txt", "r", stdin);
+    freopen("test.txt", "r", stdin);
     memset(input, 0, sizeof(input));
     scanf("%d", &input_num);
 
