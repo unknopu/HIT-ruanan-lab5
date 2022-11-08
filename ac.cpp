@@ -215,9 +215,8 @@ void buildTable()
         j++;
     }
     base_table[parent_state] = j - (insert_table[0]);
-    // bool flag = 1;
-    while (true)
-    // while (flag)
+    bool flag = 1;
+    while (flag)
     {
         int p = 0;
         for (; p < atIndex; p++)
@@ -227,8 +226,7 @@ void buildTable()
         }
         if (p == atIndex)
         {
-            break;
-            // flag = 0;
+            flag = 0;
         }
         else
         {
