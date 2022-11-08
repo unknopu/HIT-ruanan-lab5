@@ -5,46 +5,49 @@
 #include <queue>
 #include <stack>
 
+#define MAX = MAX;
+#define DEFAULT = 0;
+
 using namespace std;
 struct node
 {
     int cur_char;
     int parent_char;
-} model_set[256][256];
+} model_set[MAX][MAX];
 
 struct next_node
 {
     int state;
     int character;
-} next_table[256];
+} next_table[MAX];
 
 struct output_node
 {
     int state;
-    char str[256];
+    char str[MAX];
     bool available;
-} output[256];
+} output[MAX];
 
 struct result_node
 {
     int pos;
     int state;
-} result[256];
+} result[MAX];
 queue<int> q;
 
-int char_appear[256];
-int base_table[256];
-int checker[256];
-int fail_table[256];
+int char_appear[MAX];
+int base_table[MAX];
+int checker[MAX];
+int fail_table[MAX];
 int atState = 0;
 int parent_state = 0;
 
-int insert_table[256];
+int insert_table[MAX];
 int atIndex = 0;
 int atNodeNo = 0;
 int next_node_num = 0;
 int input_num;
-char input[256][256];
+char input[MAX][MAX];
 int pos = 0;
 int cur_pos;
 
@@ -93,7 +96,7 @@ int main()
         char_appear[model_set[i][0].cur_char] = 1;
     }
 
-    for (int j = 0; j < 256; j++)
+    for (int j = 0; j < MAX; j++)
     {
         if (char_appear[j])
         {
@@ -125,7 +128,7 @@ int main()
             }
         }
 
-        for (int j = 0; j < 256; j++)
+        for (int j = 0; j < MAX; j++)
         {
             if (char_appear[j])
             {
@@ -170,7 +173,7 @@ int main()
     }
 
     buildOutput();
-    char tester[256];
+    char tester[MAX];
     scanf("%s", tester);
     int now_state = goToFunc(0, tester[0]);
     printf("%d ", now_state);
@@ -253,7 +256,7 @@ void buildFailor()
     {
         if (checker[i])
         {
-            for (int j = 0; j < 256; j++)
+            for (int j = 0; j < MAX; j++)
             {
                 if (next_table[j].state == i)
                 {
@@ -262,22 +265,6 @@ void buildFailor()
                 }
             }
         }
-
-        // if (!checker[i])
-        // {
-        //     continue;
-        // }
-        // else
-        // {
-        //     for (int j = 0; j < 256; j++)
-        //     {
-        //         if (next_table[j].state == i)
-        //         {
-        //             fail_table[i] = goToFunc(fail_table[checker[i]], next_table[j].character);
-        //             break;
-        //         }
-        //     }
-        // }
     }
 }
 
@@ -303,7 +290,7 @@ int goToFunc(int state, int c)
 
 void buildOutput()
 {
-    char tt[256];
+    char tt[MAX];
     for (int i = 1; i <= atState; i++)
     {
         memset(tt, 0, sizeof(tt));
@@ -312,7 +299,7 @@ void buildOutput()
         int num = 0;
         while (temp)
         {
-            for (int j = 0; j < 256; j++)
+            for (int j = 0; j < MAX; j++)
             {
                 if (temp == next_table[j].state)
                 {
