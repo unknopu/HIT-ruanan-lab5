@@ -176,7 +176,6 @@ int main()
     char tester[MAX];
     scanf("%s", tester);
     int now_state = goToFunc(DEFAULT, tester[DEFAULT]);
-    printf("%d ", now_state);
     result[pos].state = now_state;
     result[pos++].pos = 1;
     for (cur_pos = 1; cur_pos < (int)strlen(tester); cur_pos++)
@@ -186,7 +185,7 @@ int main()
         result[pos++].pos = cur_pos + 1;
     }
 
-    printf("\n\nmatch:\n");
+    cout << "\nAll detected patterns are as follows:" << endl;
     for (int j = 0; j < pos; j++)
     {
         for (int i = 0; i <= atState; i++)
