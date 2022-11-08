@@ -49,8 +49,8 @@ int pos = 0;
 int cur_pos;
 
 void buildTable();
-void BuildFailTable();
-void BuildOutputTable();
+void buildFailor();
+void buildOutput();
 int goToFunc(int state, int c);
 
 int main()
@@ -162,30 +162,29 @@ int main()
 		cout << checker[i] << " ";
 	}
 
-    BuildFailTable();
+    buildFailor();
     printf("\nfail:\t");
     for (int i = 0; i <= atState; i++)
     {
         printf("%d ", fail_table[i]);
     }
 
-    BuildOutputTable();
-
-    char test_char[256];
-    scanf("%s", test_char);
-    int now_state = goToFunc(0, test_char[0]);
+    buildOutput();
+    char tester[256];
+    scanf("%s", tester);
+    int now_state = goToFunc(0, tester[0]);
     printf("%d ", now_state);
 
     result[pos].state = now_state;
     result[pos++].pos = 1;
-    for (cur_pos = 1; cur_pos < (int)strlen(test_char); cur_pos++)
+    for (cur_pos = 1; cur_pos < (int)strlen(tester); cur_pos++)
     {
-        now_state = goToFunc(now_state, test_char[cur_pos]);
+        now_state = goToFunc(now_state, tester[cur_pos]);
         result[pos].state = now_state;
         result[pos++].pos = cur_pos + 1;
     }
 
-    printf("\n\nmatch:\n");
+	cout << "\n\nmatched:\n";
     for (int j = 0; j < pos; j++)
     {
         for (int i = 0; i <= atState; i++)
@@ -249,7 +248,7 @@ void buildTable()
     parent_state++;
 }
 
-void BuildFailTable()
+void buildFailor()
 {
     for (int i = 0; i <= atState; i++)
     {
@@ -291,7 +290,7 @@ int goToFunc(int state, int c)
     }
 }
 
-void BuildOutputTable()
+void buildOutput()
 {
     char tt[256];
     for (int i = 1; i <= atState; i++)
