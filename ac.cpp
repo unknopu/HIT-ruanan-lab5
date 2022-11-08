@@ -144,25 +144,40 @@ int main()
         }
     }
 
-    printf("\n\nnext:\n");
-    for (int i = 0; i <= 12; i++)
-    {
-        printf("%d ", next_table[i].state);
-    }
+    cout << "next table:" << endl;
+	for (int i = 0; i <= 12; i++)
+	{
+		cout << next_table[i].state << " ";
+	}
+	cout << endl;
+	cout << "base table:" << endl;
+	for (int i = 0; i <= atState; i++)
+	{
+		cout << base_table[i] << " ";
+	}
+	cout << endl;
+	cout << "check table:" << endl;
+	for (int i = 0; i <= 12; i++)
+	{
+		cout << checker[i] << " ";
+	}
+    // printf("check:\n");
+    // for (int i = 0; i <= 12; i++)
+    // {
+    //     printf("%d ", checker[i]);
+    // }
 
-    printf("check:\n");
-    for (int i = 0; i <= 12; i++)
-    {
-        printf("%d ", checker[i]);
-    }
+    // printf("\n\nnext:\n");
+    // for (int i = 0; i <= 12; i++)
+    // {
+    //     printf("%d ", next_table[i].state);
+    // }
 
-    
-
-    printf("\n\nbase:\n");
-    for (int i = 0; i <= atState; i++)
-    {
-        printf("%d ", base_table[i]);
-    }
+    // printf("\n\nbase:\n");
+    // for (int i = 0; i <= atState; i++)
+    // {
+    //     printf("%d ", base_table[i]);
+    // }
 
     BuildFailTable();
 
