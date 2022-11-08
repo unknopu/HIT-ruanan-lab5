@@ -145,12 +145,6 @@ int main()
         }
     }
 
-    printf("check:\n");
-    for (int i = 0; i <= 12; i++)
-    {
-        printf("%d ", checker[i]);
-    }
-
     printf("\n\nnext:\n");
     for (int i = 0; i <= 12; i++)
     {
@@ -161,6 +155,12 @@ int main()
     for (int i = 0; i <= atState; i++)
     {
         printf("%d ", base_table[i]);
+    }
+
+    printf("check:\n");
+    for (int i = 0; i <= 12; i++)
+    {
+        printf("%d ", checker[i]);
     }
 
     BuildFailTable();
@@ -198,7 +198,7 @@ int main()
             }
         }
     }
-
+	getchar();
     fclose(stdin);
     return 0;
 }
