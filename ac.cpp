@@ -145,21 +145,24 @@ int main()
         }
     }
 
-    printf("\n\nnext:\n");
-    for (int i = 0; i <= 12; i++)
-    {
-        printf("%d ", next_table[i].state);
-    }
-    printf("\n\nbase:\n");
-    for (int i = 0; i <= atState; i++)
-    {
-        printf("%d ", base_table[i]);
-    }
     printf("check:\n");
     for (int i = 0; i <= 12; i++)
     {
         printf("%d ", checker[i]);
     }
+
+    printf("\n\nnext:\n");
+    for (int i = 0; i <= 12; i++)
+    {
+        printf("%d ", next_table[i].state);
+    }
+
+    printf("\n\nbase:\n");
+    for (int i = 0; i <= atState; i++)
+    {
+        printf("%d ", base_table[i]);
+    }
+
     BuildFailTable();
 
     printf("\n\nfail:\n");
