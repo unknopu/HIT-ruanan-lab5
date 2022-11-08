@@ -46,7 +46,7 @@ int next_node_num = 0;
 int input_num;
 char input[256][256];
 int pos = 0;
-int posAt;
+int cur_pos;
 
 void buildTable();
 void buildFailor();
@@ -173,13 +173,14 @@ int main()
     char tester[256];
     scanf("%s", tester);
     int now_state = goToFunc(0, tester[0]);
+    printf("%d ", now_state);
     result[pos].state = now_state;
     result[pos++].pos = 1;
-    for (posAt = 1; posAt < (int)strlen(tester); posAt++)
+    for (cur_pos = 1; cur_pos < (int)strlen(tester); cur_pos++)
     {
-        now_state = goToFunc(now_state, tester[posAt]);
+        now_state = goToFunc(now_state, tester[cur_pos]);
         result[pos].state = now_state;
-        result[pos++].pos = ++posAt;
+        result[pos++].pos = cur_pos + 1;
     }
 
     printf("\n\nmatch:\n");
@@ -283,7 +284,7 @@ int goToFunc(int state, int c)
     {
         printf("%d ", fail_table[state]);
         result[pos].state = fail_table[state];
-        result[pos++].pos = posAt;
+        result[pos++].pos = cur_pos;
         return goToFunc(fail_table[state], c);
     }
 }
