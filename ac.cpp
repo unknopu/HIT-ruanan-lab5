@@ -144,19 +144,19 @@ int main()
         }
     }
 
-    cout << "next table:" << endl;
+    cout << "next:\t";
 	for (int i = 0; i <= 12; i++)
 	{
 		cout << next_table[i].state << " ";
 	}
 	cout << endl;
-	cout << "base table:" << endl;
+	cout << "base:\t";
 	for (int i = 0; i <= atState; i++)
 	{
 		cout << base_table[i] << " ";
 	}
 	cout << endl;
-	cout << "check table:" << endl;
+	cout << "check:\t";
 	for (int i = 0; i <= 12; i++)
 	{
 		cout << checker[i] << " ";
