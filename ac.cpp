@@ -217,20 +217,19 @@ void buildTable()
     }
 
     base_table[parent_state] = j - (insert_table[0]);
-    // bool flag = 1;
-    // while (flag)
     while (true)
     {
         int p = 0;
-        for (; p < atIndex; p++)
-        {
+        while (true) {
             if ((next_table[base_table[parent_state] + insert_table[p]].state) != 0)
+            {
                 break;
+            }   
+            p++;
         }
         if (p == atIndex)
         {
             break;
-            // flag = 0;
         }
         else
         {
